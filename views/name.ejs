@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>bc name app</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="styles/name-style.css">
+
+</head>
+<body>
+
+<div class="row">
+
+  <div class="offset-md-1 col-md-4 mx-auto text-center">
+
+    <h1>Welcome</h1>
+    <h2>What's your name?</h2>
+    <form method="POST" action="/insert" style="display: inline-block">
+      <input type="text" id="fname" name="fname"><br>
+    
+      <input type="submit" class="btn btn-outline-secondary" value="Click Me!">
+      <p id="something"></p>
+
+    
+
+        
+    </form>
+    <!-- <span></span> 
+<div></div> -->
+
+  </div>
+
+  <div class="col-md-4">
+
+    <h3>a history names</h3>
+      <% for (var i=0; i< nameData.length; i++ ) { %>
+        <form method="POST" action="/update" style="display: inline-block">
+          <input type="hidden" name="nameID" value="<%= nameData[i]._id %>"> 
+          <input id="inputUpdateName" name="inputUpdateName" value="<%= nameData[i].fname %>">   
+            <input type="submit" class="btn btn-secondary btn-sm" value="update">
+        </form>
+        <form method="POST" action="/delete/<%= nameData[i]._id %>" style="display: inline-block">
+          <input type="submit" class="btn btn-outline-danger btn-sm" value="delete">
+        </form>
+        <br />
+        <% } %>
+
+  </div>
+
+</div>
+
+<!-- scripts go here -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js'>
+  </script>
+  <script src="scripts/name-script.js"></script>
+  
+  <script>
+
+      let greeting;
+      let fname =  '<%=nameData[(nameData.length-1)].fname%>';
+
+      console.log(fname);
+        greeting = "Hi There, " + fname + "! What's Up?"
+        $('#something').text(greeting);
+
+  </script>
+
+</body>
+</html>
